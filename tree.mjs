@@ -6,6 +6,7 @@ function TreeNode(val, left, right) {
     this.toString = function () { return `${this.val}` };
 }
 
+// Create tree from array
 function treeFromArr (ar) {
 	if (ar.length == 0 ) return null;
 	let npos = 2;
@@ -74,6 +75,7 @@ function logTree (root) {
 		console.log(str);
 	}
 }
+
 
 
 //let tree;
