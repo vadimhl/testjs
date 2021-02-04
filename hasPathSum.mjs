@@ -2,9 +2,8 @@ import {treeFromArr, logTree, TreeNode} from "./tree.mjs";
 
 var hasPathSum = function(root, targetSum) {
     if (!root) return targetSum==0;
-	let sum = 0;
 	let rez = false; 
-	let PathSum = function( node ) {
+	let PathSum = function( node, sum ) {
 	    sum += node.val;
 	    console.log( `val=${node.val}  sum=${sum}`)
 		if ( !node.left && !node.right ) {
@@ -12,13 +11,13 @@ var hasPathSum = function(root, targetSum) {
 			return;
 		}
 		if ( node.left  ) {
-			PathSum(node.left);
+			PathSum(node.left, sum );
 		}
 		if ( node.right ) {
-			PathSum(node.right);
+			PathSum(node.right, sum );
 		}
 	}
-	PathSum(root);
+	PathSum(root, 0);
 	return rez;
 
 };
