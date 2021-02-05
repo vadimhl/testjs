@@ -11,14 +11,11 @@ var getRow = function(numRows) {
    while ( currow <= numRows ) {
        rez[0] = 1;
        rez[currow] = 1;
-       //console.log(`pre = ${pre}`);
        for ( let i = 1; i <= (currow >> 1); i++) {
-           //console.log(` currow=${currow} i=${i}  pre[i]=${pre[i]} pre[i+1]=${pre[i+1]} pre = ${pre}`);
            rez[i] = pre[i] + pre[i-1];
            rez[currow-i] = rez[i] ;
        }
        currow++;
-       //console.log(pre);
        pre = [...rez];
    }
    return rez;
