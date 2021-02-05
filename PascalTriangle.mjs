@@ -5,22 +5,17 @@
 var generate = function(numRows) {
    let rez =  [];
    if (numRows == 0 ) return rez;
-   rez[1] = [1];
+   rez[0] = [1];
    let currow = 1;
    while ( currow < numRows ) {
-       //let next = currow+1;
        rez [currow] = [1];
        rez [currow][currow] = 1;
-       console.log( `--- currow=${currow} cr2=${currow >> 1} `);
        for ( let i = 1; i <= (currow >> 1); i++) {
-        console.log( `currow=${currow} cr2=${currow >> 1}  i=${i}`);
-        rez [currow][i] = i;
-            rez [currow][currow-i] = i;
+        rez [currow][currow-i] = rez [currow][i] = rez [currow-1][i-1] + rez [currow-1][i];
        }
        currow++;
    }
    return rez;
-
 };
 let rez = generate(5);
 console.log(rez);
