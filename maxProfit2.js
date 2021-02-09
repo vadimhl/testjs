@@ -3,15 +3,17 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
-    let maxProf = 0; 
-    if (prices.length<2) return 0;
-    let minBuy = prices[0];
-    for ( let i = 1; i<prices.length; i++ ) {
-        let cur = prices[i] ;
-        maxProf = Math.max(cur - minBuy, maxProf);
-        minBuy = Math.min(cur, minBuy);
+var maxProfit = function (prices) {
+    let maxProf = 0;
+    let curProf = 0;
+    for (let i = 1; i < prices.length; i++) {
+        if ( prices[i]>= prices[i-1]) {
+            curProf += prices[i] - prices[i-1];
+        } else {
+            maxProf += curProf;
+            curProf = 0;
+        }
     }
-    return maxProf;    
+    return maxProf+curProf; 
 };
-console.log(maxProfit( [7,1,5,3,6,4] ) );
+console.log(maxProfit([7, 1, 5, 3, 6, 4]));
