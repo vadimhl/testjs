@@ -5,27 +5,24 @@ var Queue = function() {
     this.q = [];
 }
 
-Queue.prototype.pop() {
-    return this.q.unshift();
+Queue.prototype.pop = function()  {
+    return this.q.shift();
 }
-Queue.prototype.push(el) {
+Queue.prototype.push = function(el)  {
     return this.q.push(el);
 }
-Queue.prototype.peek() {
-    return this.q[0]);
+Queue.prototype.peek = function()  {
+    return this.q[0];
 }
-Queue.prototype.size() {
-    return this.q.length);
+Queue.prototype.size = function()  {
+    return this.q.length;
 }
-Queue.prototype.empty() {
-    return this.q.length==0);
+Queue.prototype.empty  = function() {
+    return this.q.length==0;
 }
-
-
 
 var MyStack = function() {
-    this.q = [];
-    
+    this.q = new Queue();
 };
 
 /**
@@ -34,7 +31,12 @@ var MyStack = function() {
  * @return {void}
  */
 MyStack.prototype.push = function(x) {
-    return this.q.push()
+    const qt = new Queue();
+    qt.push(x);
+    while ( !this.q.empty()) {
+        qt.push(this.q.pop());
+    }
+    this.q= qt;
 };
 
 /**
@@ -42,7 +44,7 @@ MyStack.prototype.push = function(x) {
  * @return {number}
  */
 MyStack.prototype.pop = function() {
-    
+    return this.q.pop();
 };
 
 /**
@@ -50,7 +52,7 @@ MyStack.prototype.pop = function() {
  * @return {number}
  */
 MyStack.prototype.top = function() {
-    
+    return this.q.peek();
 };
 
 /**
@@ -58,7 +60,7 @@ MyStack.prototype.top = function() {
  * @return {boolean}
  */
 MyStack.prototype.empty = function() {
-    return this.q.length == 0;
+    return this.q.empty();
 };
 
 /** 
@@ -69,3 +71,20 @@ MyStack.prototype.empty = function() {
  * var param_3 = obj.top()
  * var param_4 = obj.empty()
  */
+let q = new MyStack();
+let rez=q.push(1);
+console.log(`rez=${rez}  ${q.q.q}`);
+rez=q.push(2);
+console.log(`rez=${rez}  ${q.q.q}`);
+rez=q.push(3);
+console.log(`rez=${rez}  ${q.q.q}`);
+rez=q.push(4);
+console.log(`rez=${rez}  ${q.q.q}`);
+rez=q.push(5);
+console.log(`rez=${rez}  ${q.q.q}`);
+rez=q.pop();
+console.log(`rez=${rez}  ${q.q.q}`);
+rez=q.pop();
+console.log(`rez=${rez}  ${q.q.q}`);
+rez=q.pop();
+console.log(`rez=${rez}  ${q.q.q}`);
