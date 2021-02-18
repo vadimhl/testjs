@@ -18,7 +18,7 @@ function treeFromArr (ar) {
 
 	for ( let i = 1; i < ar.length; i++ ) {
 	    //console.log(`i=${i}  ar[i]=${ar[i]}   pos=${pos}  npos=${npos} ind_up=${ind_up}  left=${left}   ${nodes} `);
-	    if (ar[i]) {
+	    if (ar[i] !== null) {
 			nodes.push(new TreeNode(ar[i]) );
 			//console.log(`         ind_up=${ind_up}  left=${left}   ${nodes} `);
 			if ( left ) {
@@ -68,9 +68,9 @@ function logTree (root) {
 	//console.log(rez);
 	for (let i = 0; i < rez.length; i++ ) {
 	    let str = "";
-	    if (!rez[i]) rez[i]=[] ;
+	    if (/*!rez[i]*/ rez[i] === null) rez[i]=[] ;
 		for (let j = 0; j < rez[i].length; j++ ) {
-	       	str += (rez[i][j]?(""+rez[i][j]).padStart(3):"   ");
+	       	str += (""+(rez[i][j]??"")).padStart(3);
 		}
 		console.log(str);
 	}
