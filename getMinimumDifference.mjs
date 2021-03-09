@@ -4,31 +4,23 @@ import {treeFromArr, logTree, TreeNode} from "./tree.mjs";
  * @param {TreeNode} root
  * @return {number}
  */
-var getMinimumDifference = function(root) {
-    let min=Infinity;
-    const trmin = function(node, min) {
-        if(!node) return min;
-        return Math.min(min, node.val, trmin(node.left, min), trmin(node.right, min)  );
-    }
-    const trmax = function(node, max) {
-        if(!node) return max;
-        return Math.max(max, node.val, trmin(node.left, max), trmin(node.right, max)  );
-    }
-    const trdist = function(node) {
+let getMinimumDifference = function(root) {
+    let ar=[];
+    const tr = function(node) {
         if(!node) return;
-        if (node.left) {
-            min=Math.min(min, node.val-trmax(node.left, 0) );
-            trdist(node.right);
-        }
-        if (node.right) {
-            console.log(`node.val=${node.val}  min=${min}  ${trmin(node.right, Infinity)} `) 
-            min=Math.min(min, trmin(node.right, Infinity) - node.val );
-            trdist(node.left);
-        }
+        ar.push(node.val);
+        tr(node.left);
+        tr(node.right);
     }
-    trdist(root);
+    tr(root);
+    ar.sort( (a,b)=>a-b);
+    console.log(ar);
+    let min = ar[1]-ar[0];
+    for ( let i=1; i<ar.length-1; i++ ) {
+        min = Math.min(min, ar[i], ar[i+1]);
+    }
     return min;
 };
-let tree =  treeFromArr ([543,384,652,null,445,null,699] );
+let tree =  treeFromArr ([60,30,80, 20,40, 70, 90] );
 logTree( tree );
 console.log(     getMinimumDifference(tree, tree.left, tree.right) );
