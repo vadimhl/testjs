@@ -87,6 +87,7 @@ function test (a, b, d) {
     let p1=0;
     let p2=1;
     let fi=1;
+    if (max===0) return true;
     let sum = min<2?map.get(1):0;
     for (let i=2; i<=max; i++) {
         fi = (p1 +p2) % d;
