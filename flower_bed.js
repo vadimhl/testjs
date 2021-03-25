@@ -14,15 +14,15 @@ function outG (garden) {
     }
 N=9
 const vertex = [
-    [1, 5],
-    [3, 11],
-    [4, 8],
-    [5, 11],
-    [7, 8],
-    [6, 5],
-    [4, 8],
-    [7, 2],
-    [2, 2],
+    [2 , 2],
+    [7 , 2],
+    [6 , 5],
+    [7 , 8],
+    [6 , 11],
+    [5 , 11],
+    [4 , 8],
+    [3 , 11],
+    [1 , 5],
 ];
 const maxX=vertex.reduce( (pre, cur) => Math.max(pre, cur[0]), 0);
 const maxY=vertex.reduce( (pre, cur) => Math.max(pre, cur[1]), 0);
@@ -73,13 +73,18 @@ for (let x=0 ; x<verts.length; x++) {
         let cnt=0;
         let xv=0;
         for (let y=0; y<maxY; y++){
-            if ( y >=verts[x][xv] ) {
-                //console.log(`x=${x} y=${y} cnt=${cnt} xv=${xv} `);
+            console.log(`in x=${x} y=${y} cnt=${cnt} xv=${xv} maxY=${maxY}`);
+            if ( y === Math.floor(verts[x][xv] )) {
                 cnt++;
                 xv++;
-            }
-            if ( cnt % 2 !==0 ) {
-                garden[x][y]='f';
+                console.log(`== x=${x} y=${y} cnt=${cnt} xv=${xv} `);
+            } else  {
+                console.log(`<> x=${x} y=${y} cnt=${cnt} xv=${xv} `);
+                if ( cnt % 2 !==0 ) {
+                    garden[x][y]='f';
+                } else {
+                    //garden[x][y]='u';
+                }
             }
         }
     }
