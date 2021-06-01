@@ -1,6 +1,5 @@
 function currencyStyle(line) {
     let ar = line.matchAll(/\$[.,0-9]*/g);
-    
     return ar;
 }
 
